@@ -152,7 +152,8 @@ void reconnectMQTT() {
 }
 
 // Turn relay on when button is pressed, debounce, and increment interruptCounter
-// This is not done in the main loop because we can be searching for wifi but still want to be able to turn on the relay with the button
+// This is not done in the main loop because we can be searching for wifi 
+// but still want to be able to turn on the relay with the button
 void handleInterrupt() {
   static unsigned long lastInterruptTime = 0;
   unsigned long interruptTime = millis();
@@ -160,7 +161,7 @@ void handleInterrupt() {
   if (interruptTime - lastInterruptTime > 200) {
     interruptCounter++;
     relayState =! relayState;
-    digitalWrite(relay, relayState?HIGH:LOW);
+    digitalWrite(relay, relayState ? LOW : HIGH);
   }
   lastInterruptTime = interruptTime;
 }
