@@ -79,7 +79,7 @@ void loop(void){
     //Serial.print("Publish message: ");
     //Serial.println(temperature);
     dtostrf(temperature, 3, 1, msg);
-    client.publish("heater/temperature", msg); 
+    client.publish("heater/fan/temperature", msg); 
     //Serial.print("wifi level: ");
     //Serial.println(WiFi.RSSI());
   }
@@ -87,7 +87,7 @@ void loop(void){
     // Change state only if interruptCounter has changed by odd amount
     if (interruptCounter % 2){
       //Serial.println("relay triggered");
-      digitalWrite(led, relayState ? HIGH : LOW);
+      // location/device?/data
       client.publish("heater/fan/status", relayState ? "1" : "0");
     }
     interruptCounter = 0;
@@ -139,7 +139,7 @@ void reconnectMQTT() {
   while (!client.connected()) {
     //Serial.print("Attempting MQTT connection...");
     String clientId = "Heater Fan Controller";
-    if (client.connect(clientId.c_str())) {
+    if (client.connect(clientId.c_str(), NULL, NULL, "heater/fan/temperature", 0, 0, "0")) {
       //Serial.println("connected");
       client.subscribe("heater/fan/control");
     } else {
@@ -161,7 +161,8 @@ void handleInterrupt() {
   if (interruptTime - lastInterruptTime > 200) {
     interruptCounter++;
     relayState =! relayState;
-    digitalWrite(relay, relayState ? LOW : HIGH);
+    digitalWrite(relay, relayState ? HIGH : LOW);
+    digitalWrite(led, relayState ? LOW : HIGH);
   }
   lastInterruptTime = interruptTime;
 }
