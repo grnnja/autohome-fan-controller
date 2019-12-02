@@ -7,3 +7,6 @@
 * Use button on sonoff to turn relay on
   * send fan status back through MQTT
 * send temperature from DS18B20 throught MQTT
+## Installation and Usage
+* clone this repository `https://github.com/grnnja/autohome-fan-controller.git`
+* Build and upload code to sonoff
