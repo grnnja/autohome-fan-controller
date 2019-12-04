@@ -9,4 +9,4 @@
 * send temperature from DS18B20 throught MQTT
 ## Installation and Usage
 * clone this repository `https://github.com/grnnja/autohome-fan-controller.git`
-* Build and upload code to sonoff
+* [Build and upload code to sonoff](https://medium.com/@jeffreyroshan/flashing-a-custom-firmware-to-sonoff-wifi-switch-with-arduino-ide-402e5a2f77b)
